@@ -12,6 +12,10 @@
     (Lecture 7, 8)
 
  5. Destructuring.
+ (Lecture 9)
+
+ 6. Array Methods.
+ (Lecture 10)
 */
 
 ////////////////////////////////////////////////////////////////////////
@@ -128,3 +132,49 @@ const stringifyData = (pokemon) => {
 //Then use array destructuring syntax to destructure the array returned by the function while calling it.
 const[nameString, speciesString] = stringifyData(mew);
 console.log(nameString, speciesString);
+
+
+
+/////////////////////////////////////////////////////////////////////////////////
+//L10: Array Methods
+// Remove this comment to view the effects of the code.
+
+//.from
+//The .from method converts a node list into an array.
+//In the example below we create a constant that points at the box class elements (ie. the coloured boxes) from the node list generated from the accompanying HTML file.
+const boxes = document.querySelectorAll('.box');
+//We the nuse .from to create an array of values pointing at these elements.
+const boxesArray = Array.from(boxes);
+console.log(boxesArray);
+//We can now use .forEach to change all of these boxes at once.
+boxesArray.forEach(element => element.style.backgroundColor = 'dodgerblue');
+//We could refactor this into one line;
+//Array.from(boxes).forEach(element => element.style.backgroundColor = 'dodgerblue');
+
+
+//The .for/of loop
+//This is a new 'for' loop method which removes the need to use a set of parameters to process the whole array. Instead of writing 
+//        for (let i = 0; i < array.length; i++)
+// we can just write
+//        for (const element of array)
+// for example:
+for (const box of boxes) {
+  if (box.className === 'box blue') {
+    continue;
+  } else {
+  box.textContent = 'I changed color to blue!'; 
+  };
+}  
+
+//The benefit of using .for/of instead of .map is that .map doesn't allow for 'break' or 'continue' statements, whereas .for/of does.
+
+//findIndex
+//This method lets us find the first value index of values in an array for which a statement returns true.
+const numbers = [12, 17, 52, 8, 21, 14, 11];
+console.log (numbers.findIndex(element => element >= 20));
+//Note that it only gives the inde xof the -first- element in the array that returns true.
+
+
+
+
+
