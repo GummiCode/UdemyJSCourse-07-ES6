@@ -16,6 +16,9 @@
 
  6. Array Methods.
  (Lecture 10)
+
+ 7. The Spread operator
+ (Lecture 11)
 */
 
 ////////////////////////////////////////////////////////////////////////
@@ -137,7 +140,7 @@ console.log(nameString, speciesString);
 
 /////////////////////////////////////////////////////////////////////////////////
 //L10: Array Methods
-// Remove this comment to view the effects of the code.
+/* Remove this comment to view the effects of the code.
 
 //.from
 //The .from method converts a node list into an array.
@@ -167,6 +170,7 @@ for (const box of boxes) {
 }  
 
 //The benefit of using .for/of instead of .map is that .map doesn't allow for 'break' or 'continue' statements, whereas .for/of does.
+*/
 
 //findIndex
 //This method lets us find the first value index of values in an array for which a statement returns true.
@@ -176,5 +180,30 @@ console.log (numbers.findIndex(element => element >= 20));
 
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//L10: The Spread operator 
+//The spread operator, '...', converts an array into a comma-separated list of values suitable for insertion into a function.
+const addFourValues = (a, b, c, d) => {return (a + b + c + d)};
+const ages = [20, 28, 32, 41]
+const sumOfAges = addFourValues(...ages);
+console.log(sumOfAges);
 
+const pokemonTeam = ["Bulbasaur", "Squirtle", "Charmander", "Pikachu", "Eevee", "Mew"];
+const teamSpread = (A, B, C, D, E, F) => {return `${A} will be sent out first. You can switch to ${B}, ${C}, ${D}, ${E} or ${F} during your turn.`}
+const starterSpread = teamSpread(...pokemonTeam);
+console.log(starterSpread);
 
+//Spread can also be used to join two arrays.
+//Additional values can also be inserted.
+
+const iansFolks = ['Diane', 'Maurice'];
+const davesFolks = ['Alice', 'Brian'];
+const folks = [...iansFolks, "Boris", ...davesFolks];
+console.log(folks);
+
+//... can also be used on node lists. Here we combine all h1 elements and box class elements in the DOM into a single array, which we can then loop through to change the text color of these elements.
+
+const h = document.querySelector('h1');
+const boxes = document.querySelectorAll('.box');
+const all = [h, ...boxes];
+Array.from(all).forEach(element => element.style.color = 'orange');
