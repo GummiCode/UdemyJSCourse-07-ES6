@@ -19,7 +19,16 @@
 
  7. The Spread operator
  (Lecture 11)
-*/
+
+ 8. Rest Parameters
+ (Lecture 12)
+
+ 9. Default Parameters in Constructors
+ (Lecture 13)
+
+ 10. Maps
+ (Lecture 14)
+ */ 
 
 ////////////////////////////////////////////////////////////////////////
 // L6: Some useful String methods in ES6.
@@ -252,3 +261,77 @@ function smithFamilyMember(firstName, birthYear, eyeColor, lastName = 'Smith') {
 const john = new smithFamilyMember('John', 1973, 'brown');
 
 console.log(john);
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+// L14: Maps
+// A Map is a new key-value data structure.
+// Used to map string keys to arbitrary values.
+// The key difference between a map and an object is that in objects, keys must be strings,
+// whereas in maps we can use any kind of primitive value (strings, numbers, booleans) and functions and objects as keys.
+// This has numerous powerful uses.
+//  Maps also have some special methods.
+
+
+//Create the map using the following syntax:
+const question = new Map();
+
+// Assign properties (key-value pairs) using the following syntax:
+question.set("question", "What was the title of Huey Lewis And The News' 1983 hit album?")
+question.set(1, "Sports");
+question.set(2, "Games");
+question.set(3, "Activities");
+question.set(4, "Hobbies");
+question.set(5, "Things to Make and Do");
+question.set("correct", 1);
+question.set(true, "Correct Answer!");
+question.set(false, "Wrong. Please try again.")
+
+console.log(question);
+
+//We get values from the Map using the .get method.
+console.log(question.get("question"));
+
+//We can check the map size using the .size method.
+console.log(question.size);
+
+//We can remove properties from the map using the .delete method with the key of the property you want to remove.
+question.delete(5);
+console.log(question);
+
+// The .has method can be used as a conditional operator. It returns true if a property exists which has a key equal to the value assigned to the .has method.
+if(question.has(4)) {question.delete(4)};
+console.log(question);
+
+// .forEach() can be used on maps. It iterates over each property in the map, and the key and value can both be passed in.
+// Pretty powerful, not least because you can pass in functions used as keys or values.
+question.forEach((value, key) => console.log(`This is "${key}", and it's set to "${value}".`));
+
+// for/of loops can also be used on Maps.
+// We use the .entries method to point the for/of loop at every entry in the questions map sequentially.
+// We also use destructuring (see above) to tell the for.of loop to point at both the key and the value of each property and store them as separate variables. 
+// These 'key' and 'value' variables are then used in the function embedded in the for/of loop.
+for(let [key, value] of question.entries()) {
+  console.log(`This is "${key}", and it's set to "${value}".`)
+};
+
+// As we can use various data types as keys in Maps, we can use this as a selection criteria.
+// Below we log the values assigned to keys that are numbers.
+for (let [key, value] of question.entries()) {
+  if (typeof(key) === 'number') {
+    console.log(`Answer ${key}: ${value}`)
+  }
+};
+
+//In the lines below we create a prompt requesting an answer as an integer. 
+//The number is compared to the value of the 'answer' property (1).
+//As the map includes properties with keys of 'true' for the correct answer message and 'false' for the wrong answer message, we can plug the result of this equality check straight into another .get to call the appropriate response message into the console. This is the beauty of maps!
+const ans = parseInt(prompt('Write the correct answer'));
+console.log (question.get (ans === question.get('correct')));
+
+//the .clear method deletes all values from the map.
+/*
+question.clear();
+question.set("Status", "This Map is (almost) empty.");
+console.log(question);
+*/
