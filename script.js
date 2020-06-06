@@ -341,8 +341,8 @@ console.log(question);
 // L15. Classes
 //Syntactic sugar for function constructors. Called Class Declarations.
 
-class createPerson {
-  constructor (name, birthYear, job) {
+class Individual {
+  constructor(name, birthYear, job) {
     this.name = name;
     this.birthYear = birthYear;
     this.job = job;
@@ -359,7 +359,7 @@ class createPerson {
 
 };
 
-const adam = new createPerson("Adam", 1983, "Carpenter");
+const adam = new Individual("Adam", 1983, "Carpenter");
 console.log(adam);
 
 // Static Methods are methods included in the class constructor, but not inherited by instances of that class.
@@ -367,4 +367,29 @@ console.log(adam);
 // I presume these can be used to construct the class instances (eg. by procssing data to include in the class instance)e without being included in the class, or it could be used to invoke a function when the class is invoked without passing on that function? You could definitely use a static method to include a numerical incrementor (eg. add 1 to the value of a variable within the constructor). Useful for assigning unique IDs.
 // they can be called using the class constructor's id.
 
-createPerson.greeting();
+Individual.greeting();
+
+
+///////////////////////////////////////////////////////////////////////////////////
+// L16. Subclasses: Class Inheritance
+
+// We can use the "extends" keyword to create a subclass from an existing class.
+// The "super" keyword is used to inform the subclass that certain variables are assigned in the same manner as in the superclass.
+// The subclass can include anything a class can (because it is a class).
+
+class Athlete extends Individual {
+  constructor(name, birthYear, job, athleteType, league, representing) {
+    super(name, birthYear, job);
+    this.athleteType = athleteType;
+    this.league = league;
+    this.representing = representing;
+  }
+
+  stateStatus () {
+    console.log(`${this.name} is a professional ${this.athleteType} representing ${this.representing} in the ${this.league} League.`);
+  }
+}
+
+const athleteAdam = new Athlete("Adam", "1983", "Athlete", "Tightrope Walker", "S", "Areppa");
+
+athleteAdam.stateStatus();
