@@ -183,6 +183,7 @@ console.log (numbers.findIndex(element => element >= 20));
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //L10: The Spread operator 
 //The spread operator, '...', converts an array into a comma-separated list of values suitable for insertion into a function.
+//The Spread operator is used in the function call.
 const addFourValues = (a, b, c, d) => {return (a + b + c + d)};
 const ages = [20, 28, 32, 41]
 const sumOfAges = addFourValues(...ages);
@@ -207,3 +208,35 @@ const h = document.querySelector('h1');
 const boxes = document.querySelectorAll('.box');
 const all = [h, ...boxes];
 Array.from(all).forEach(element => element.style.color = 'orange');
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+// L12: Rest Parameters
+// Used to pass multiple individual values into an array for use in a function.
+//The Rest operator is used in the function declaration.
+// In the example below, the addTwentyPercent function uses rest parameters to convert the values passed into the function into an array of those values, which can then be processed using array methods such as .map.
+
+addTwentyPercent = (...prices) => {
+  return prices.map(price => price += (price/5));
+};
+console.log(addTwentyPercent(10, 20, 30, 40, 50));
+
+//Rest Parameters can be used in combination with other values:
+const birthYears = 
+isFullAge = (adultAge, ...years) => {
+  years.forEach(age => console.log((2020-age) >= adultAge))
+}
+
+isFullAge(18, 1990, 1995, 2000, 2005, 2010, 2015);
+
+
+//To reiterate:
+//The Spread operator is used in the function call.
+//The Rest operator is used in the function declaration.
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+// L13: Default Parameters
+// Used to give parameters a default value.
+
