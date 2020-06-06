@@ -239,4 +239,16 @@ isFullAge(18, 1990, 1995, 2000, 2005, 2010, 2015);
 /////////////////////////////////////////////////////////////////////////////////////
 // L13: Default Parameters
 // Used to give parameters a default value.
+ // Simply assign a default value in the function call using '=', as below.
+ // Default Parameters must be listed in the function call after all other values, as the default values are inserted if the number of arguments entered < the position of the parameter with a default value.
 
+function smithFamilyMember(firstName, birthYear, eyeColor, lastName = 'Smith') {
+  this.firstName = firstName;
+  this.lastName = lastName;
+  this.birthYear = birthYear;
+  this.eyeColor = eyeColor;
+};
+
+const john = new smithFamilyMember('John', 1973, 'brown');
+
+console.log(john);
