@@ -335,3 +335,36 @@ question.clear();
 question.set("Status", "This Map is (almost) empty.");
 console.log(question);
 */
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// L15. Classes
+//Syntactic sugar for function constructors. Called Class Declarations.
+
+class createPerson {
+  constructor (name, birthYear, job) {
+    this.name = name;
+    this.birthYear = birthYear;
+    this.job = job;
+  }
+
+  calculateAge() {
+    const age = new Date().getFullYear - this.birthYear;
+    console.log(age);
+  }
+
+  static greeting () {
+    console.log("Hi!");
+  }
+
+};
+
+const adam = new createPerson("Adam", 1983, "Carpenter");
+console.log(adam);
+
+// Static Methods are methods included in the class constructor, but not inherited by instances of that class.
+// One is included above, defined usin g the keyword 'static'.
+// I presume these can be used to construct the class instances (eg. by procssing data to include in the class instance)e without being included in the class, or it could be used to invoke a function when the class is invoked without passing on that function? You could definitely use a static method to include a numerical incrementor (eg. add 1 to the value of a variable within the constructor). Useful for assigning unique IDs.
+// they can be called using the class constructor's id.
+
+createPerson.greeting();
